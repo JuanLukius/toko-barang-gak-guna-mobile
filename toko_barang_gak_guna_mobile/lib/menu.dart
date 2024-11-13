@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:toko_barang_gak_guna_mobile/item_entry_form.dart';
+import 'package:toko_barang_gak_guna_mobile/widgets/left_drawer.dart';
 class MyHomePage extends StatelessWidget {
   final String npm = '2306216075'; // NPM
   final String name = 'Juan Lukius Barnaby'; // Nama
@@ -17,6 +18,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'Toko Barang Gak Guna',
           style: TextStyle(
@@ -26,6 +28,7 @@ class MyHomePage extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
+      drawer: const LeftDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -142,6 +145,10 @@ class ItemCard extends StatelessWidget {
             ..showSnackBar(
               SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!")),
             );
+              if (item.name == "Tambah Produk") {
+                Navigator.push(context,MaterialPageRoute
+                (builder: (context) => const ItemEntryFormPage()));
+              }
         },
         child: Container(
           padding: const EdgeInsets.all(8),
